@@ -1,0 +1,18 @@
+module.exports = {
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
+  extends: [
+    'airbnb-base',
+  ],
+  rules: {
+    'no-underscore-dangle': 0,
+    'no-plusplus': 'off',
+    'no-await-in-loop': 'off',
+  },
+};
