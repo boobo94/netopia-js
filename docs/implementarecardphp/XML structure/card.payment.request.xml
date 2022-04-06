@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<order type="card" id="string64" timestamp="YYYYmmddHHiiss">
+	<!-- signature element is mandatory -->
+	<signature>XXXX-XXXX-XXXX-XXXX-XXXX</signature>
+	<url>
+		<confirm>http://www.site_propriu.com/confirm</confirm>
+		<return>http://www.site_propriu.com/return</return>
+	</url>
+	<!--  
+	invoice element is mandatory ; 
+		currency attribute is mandatory (check for available values - at this moment only RON is available)
+		ammount attribute is mandatory for order->type="card" if no invoice items are specified
+	-->
+	<invoice currency="RON" amount="12.09">
+		<!-- 
+			details element is optional - it describes the payment to be made
+		-->
+		<details></details>
+		<!-- 
+			address block is optional
+			for order->type="card" mobilpay.ro will ask the user for address informations not supplied by the merchant 
+		-->
+		<contact_info>
+			<!-- 
+				if billing is suplied type attribute is mandatory
+				if type="company" deliver company name in <first_name>, fiscal numer in <fiscal_number> and registration number in <identity_number>
+				if type="person" deliver personal number in <fiscal_number> and identity card number in <identity_number>
+				for order->type="card" mobilpay.ro will ask the user for address informations not supplied by the merchant 
+			-->
+			<billing type="company|person">
+				<first_name>Prenume</first_name>
+				<last_name>Nume</last_name>
+				<fiscal_number>cnp|cui</fiscal_number>
+				<identity_number>ci|reg</identity_number>
+				<!-- country - ISO code -->
+				<country></country>
+				<county></county>
+				<city></city>
+				<zip_code></zip_code>
+				<address></address>
+				<email></email>
+				<mobile_phone></mobile_phone>
+				<bank></bank>
+				<iban></iban>
+			</billing>
+			<!-- 
+			if shipping data is same as billing data set sameasbilling attribute to 1 
+			if shipping data differs from billing data do set sameasbilling attribute at all
+			values delivery has to be done in the same manner as for billing element
+			-->
+			<shipping type="company|person" sameasbilling="1">
+				<first_name>Prenume</first_name>
+				<last_name>Nume</last_name>
+				<fiscal_number>cnp|cui</fiscal_number>
+				<identity_number>ci|reg</identity_number>
+				<!-- country - ISO code -->
+				<country></country>
+				<county></county>
+				<city></city>
+				<zip_code></zip_code>
+				<address></address>
+				<email></email>
+				<mobile_phone></mobile_phone>
+				<bank></bank>
+				<iban></iban>
+			</shipping>
+		</contact_info>
+	</invoice>
+	<!--
+		params group is optional
+		deliver as many parameters as you want
+		all delivered parameters will be returned to you in payment confirmation process 
+	-->
+	<params>
+		<param>
+			<name>param1Name</name>
+			<value>param1Value</value>
+		</param>
+		<param>
+			<name>param2Name</name>
+			<value>param2Value</value>
+		</param>
+		<!-- ....... -->
+		<param>
+			<name>paramnName</name>
+			<value>paramnValue</value>
+		</param>
+	</params>
+</order>

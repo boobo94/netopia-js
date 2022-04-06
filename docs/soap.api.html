@@ -1,0 +1,1501 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>mobilpay SOAP api</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <meta content="text/javascript" http-equiv="content-script-type">
+  <meta content="text/css" http-equiv="content-style-type">
+  <meta content="http://tomi.vanek.sk/xml/wsdl-viewer.xsl"
+ name="Generator">
+  <meta content="false" http-equiv="imagetoolbar">
+  <meta content="true" name="MSSmartTagsPreventParsing">
+  <style type="text/css">
+/**
+	wsdl-viewer.css
+*/ /**
+=========================================
+	Body
+=========================================
+*/
+html {
+	background-color: teal;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: auto;
+	color: white;
+	background-color: teal;
+	font: normal 80%/ 120% Arial, Helvetica, sans-serif;
+}
+
+#outer_box {
+	padding: 3px 3px 3px 194px;
+}
+
+#inner_box {
+	width: auto;
+	background-color: white;
+	color: black;
+	border: 1px solid navy;
+}
+
+/**
+=========================================
+	Fixed box with links
+=========================================
+*/
+#outer_links {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	margin: 3px;
+	padding: 1px;
+	z-index: 200;
+	width: 180px;
+	height: auto;
+	background-color: gainsboro;
+	padding-top: 2px;
+	border: 1px solid navy;
+}
+
+* html #outer_links /* Override above rule for IE */ {
+	position: absolute;
+	width: 188px;
+	top: expression(offsetParent.scrollTop +   0);
+}
+
+#links {
+	margin: 1px;
+	padding: 3px;
+	background-color: white;
+	height: 350px;
+	overflow: auto;
+	border: 1px solid navy;
+}
+
+#links ul {
+	left: -999em;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	z-index: 100;
+}
+
+#links li {
+	margin: 0;
+	padding: 2px 4px;
+	width: auto;
+	z-index: 100;
+}
+
+#links ul li {
+	margin: 0;
+	padding: 2px 4px;
+	width: auto;
+	z-index: 100;
+}
+
+#links a {
+	display: block;
+	padding: 0 2px;
+	color: blue;
+	width: auto;
+	border: 1px solid white;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+#links a:hover {
+	color: white;
+	background-color: gray;
+	border: 1px solid gray;
+}
+
+/**
+=========================================
+	Navigation tabs
+=========================================
+*/
+#outer_nav {
+	background-color: yellow;
+	padding: 0;
+	margin: 0;
+}
+
+#nav {
+	height: 100%;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	background-color: gainsboro;
+	border-top: 1px solid gray;
+	border-bottom: 3px solid gray;
+	z-index: 100;
+	font: bold 90%/ 120% Arial, Helvetica, sans-serif;
+	letter-spacing: 2px;
+}
+
+#nav ul {
+	background-color: gainsboro;
+	height: auto;
+	width: auto;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	z-index: 100;
+	border: 1px solid silver;
+	border-top-color: black;
+	border-width: 1px 0 9px;
+}
+
+#nav li {
+	display: inline;
+	padding: 0;
+	margin: 0;
+}
+
+#nav a {
+	position: relative;
+	top: 3px;
+	float: left;
+	width: auto;
+	padding: 8px 10px 6px 10px;
+	margin: 3px 3px 0;
+	border: 1px solid gray;
+	border-width: 2px 2px 3px 2px;
+	color: black;
+	background-color: silver;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#nav a:hover {
+	margin-top: 1px;
+	padding-top: 9px;
+	padding-bottom: 7px;
+	color: blue;
+	background-color: gainsboro;
+}
+
+#nav a.current:link,#nav a.current:visited,#nav a.current:hover {
+	background: white;
+	color: black;
+	text-shadow: none;
+	margin-top: 0;
+	padding-top: 11px;
+	padding-bottom: 9px;
+	border-bottom-width: 0;
+	border-color: red;
+}
+
+#nav a:active {
+	background-color: silver;
+	color: white;
+}
+
+/**
+=========================================
+	Content
+=========================================
+*/
+#header {
+	margin: 0;
+	padding: .5em 4em;
+	color: white;
+	background-color: red;
+	border: 1px solid darkred;
+}
+
+#content {
+	margin: 0;
+	padding: 0 2em .5em;
+}
+
+#footer {
+	clear: both;
+	margin: 0;
+	padding: .5em 2em;
+	color: gray;
+	background-color: gainsboro;
+	font-size: 80%;
+	border-top: 1px dotted gray;
+	text-align: right
+}
+
+.single_column {
+	padding: 10px 10px 10px 10px;
+	/*margin: 0px 33% 0px 0px; */
+	margin: 3px 0;
+}
+
+#flexi_column {
+	padding: 10px 10px 10px 10px;
+	/*margin: 0px 33% 0px 0px; */
+	margin: 0px 212px 0px 0px;
+}
+
+#fix_column {
+	float: right;
+	padding: 10px 10px 10px 10px;
+	margin: 0px;
+	width: 205px;
+	/*width: 30%; */
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	/* width: 30%; */
+	width: 205px;
+}
+
+html>body #rightColumn {
+	width: 205px; /* ie5win fudge ends */
+}  /* Opera5.02 shows a 2px gap between. N6.01Win sometimes does.
+	Depends on amount of fill and window size and wind direction. */ /**
+=========================================
+	Label / value
+=========================================
+*/
+.page {
+	border-bottom: 3px dotted navy;
+	margin: 0;
+	padding: 10px 0 20px 0;
+}
+
+.value,.label {
+	margin: 0;
+	padding: 0;
+}
+
+.label {
+	float: left;
+	width: 140px;
+	text-align: right;
+	font-weight: bold;
+	padding-bottom: .5em;
+	margin-right: 0;
+	color: darkblue;
+}
+
+.value {
+	margin-left: 147px;
+	color: darkblue;
+	padding-bottom: .5em;
+}
+
+strong,strong a {
+	color: darkblue;
+	font-weight: bold;
+	letter-spacing: 1px;
+	margin-left: 2px;
+}
+
+/**
+=========================================
+	Links
+=========================================
+*/
+a.local:link,a.local:visited {
+	color: blue;
+	margin-left: 10px;
+	border-bottom: 1px dotted blue;
+	text-decoration: none;
+	font-style: italic;
+}
+
+a.local:hover {
+	background-color: gainsboro;
+	color: darkblue;
+	padding-bottom: 1px;
+	border-bottom: 1px solid darkblue;
+}
+
+a.target:link,a.target:visited,a.target:hover {
+	text-decoration: none;
+	background-color: transparent;
+	border-bottom-type: none;
+}
+
+/**
+=========================================
+	Box, Shadow
+=========================================
+*/
+.box {
+	padding: 6px;
+	color: black;
+	background-color: gainsboro;
+	border: 1px solid gray;
+}
+
+.shadow {
+	background: silver;
+	position: relative;
+	top: 5px;
+	left: 4px;
+}
+
+.shadow div {
+	position: relative;
+	top: -5px;
+	left: -4px;
+}
+
+/**
+=========================================
+	Floatcontainer
+=========================================
+*/
+.spacer {
+	display: block;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+	margin: 0;
+	padding: 0;
+	border-style: none;
+	clear: both;
+	visibility: hidden;
+}
+
+.floatcontainer:after {
+	content: ".";
+	display: block;
+	height: 0;
+	font-size: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.floatcontainer {
+	display: inline-table;
+}  /* Mark Hadley's fix for IE Mac */ /* Hides from IE Mac \*/
+* 
+html .floatcontainer {
+	height: 1%;
+}
+
+.floatcontainer {
+	display: block;
+}  /* End Hack 
+*/ /**
+=========================================
+	Source code
+=========================================
+*/
+.indent {
+	margin: 2px 0 2px 20px;
+}
+
+.xml-element,.xml-proc,.xml-comment {
+	margin: 2px 0;
+	padding: 2px 0 2px 0;
+}
+
+.xml-element {
+	word-spacing: 3px;
+	color: red;
+	font-weight: bold;
+	font-style: normal;
+	border-left: 1px dotted silver;
+}
+
+.xml-element div {
+	margin: 2px 0 2px 40px;
+}
+
+.xml-att {
+	color: blue;
+	font-weight: bold;
+}
+
+.xml-att-val {
+	color: blue;
+	font-weight: normal;
+}
+
+.xml-proc {
+	color: darkred;
+	font-weight: normal;
+	font-style: italic;
+}
+
+.xml-comment {
+	color: green;
+	font-weight: normal;
+	font-style: italic;
+}
+
+.xml-text {
+	color: green;
+	font-weight: normal;
+	font-style: normal;
+}
+
+/**
+=========================================
+	Heading
+=========================================
+*/
+h1,h2,h3 {
+	margin: 10px 10px 2px;
+	font-family: Georgia, Times New Roman, Times, Serif;
+	font-weight: normal;
+}
+
+h1 {
+	font-weight: bold;
+	letter-spacing: 3px;
+	font-size: 220%;
+	line-height: 100%;
+}
+
+h2 {
+	font-weight: bold;
+	font-size: 175%;
+	line-height: 200%;
+}
+
+h3 {
+	font-size: 150%;
+	line-height: 150%;
+	font-style: italic;
+}
+
+/**
+=========================================
+	Content formatting
+=========================================
+*/
+.port {
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed gray;
+}
+
+.operation {
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed gray;
+}
+
+/* --------------------------------------------------------
+	Printing
+*/ /*
+@media print
+{
+	#outer_links, #outer_nav { 
+		display: none;
+	}
+*/
+#outer_box {
+	padding: 3px;
+}
+/* END print media definition
+}
+*/
+  </style>
+  <script language="javascript" type="text/javascript"
+ src="wsdl-viewer.js"><!--
+	// --></script>
+</head>
+<body id="operations">
+<div id="outer_box">
+<div onload="pagingInit()" id="inner_box">
+<div id="header">
+<h1>Web Service: Soap_ApiService</h1>
+</div>
+<div id="content">
+<div class="page"><a name="page.service" class="target">
+<h2>Web Service: Soap_ApiService</h2>
+</a>
+<div class="indent">
+<div class="label">Target Namespace:</div>
+<div class="value">https://www.mobilpay.ro/api</div>
+<h3>Port <b>Soap_ApiPort</b> <small><a
+ href="soap.api.html#port.id0x05ca5e80" class="local">Port type</a><a
+ href="soap.api.html#src.id0x061af9e0" class="local">Source code</a></small></h3>
+<div class="label">Location:</div>
+<div class="value">https://www.mobilpay.ro/api</div>
+<div class="label">Protocol:</div>
+<div class="value">SOAP</div>
+<div class="label">Default style:</div>
+<div class="value">rpc</div>
+<div class="label">Transport protocol:</div>
+<div class="value">SOAP over HTTP</div>
+<div class="label">Operations:</div>
+<div class="value">
+<ol style="line-height: 180%;">
+  <li><big><i>capture</i></big><a href="soap.api.html#op.id0x05cc3160"
+ class="local">Detail</a><a href="soap.api.html#src.id0x05cc3160"
+ class="local">Source code</a></li>
+  <li><big><i>credit</i></big><a href="soap.api.html#op.id0x05cc3240"
+ class="local">Detail</a><a href="soap.api.html#src.id0x05cc3240"
+ class="local">Source code</a></li>
+  <li><big><i>logIn</i></big><a href="soap.api.html#op.id0x05cc3740"
+ class="local">Detail</a><a href="soap.api.html#src.id0x05cc3740"
+ class="local">Source code</a></li>
+  <li><big><i>registerCompany</i></big><a
+ href="soap.api.html#op.id0x05cc30a0" class="local">Detail</a><a
+ href="soap.api.html#src.id0x05cc30a0" class="local">Source code</a></li>
+  <li><big><i>validateRequest</i></big><a
+ href="soap.api.html#op.id0x05ca5f20" class="local">Detail</a><a
+ href="soap.api.html#src.id0x05ca5f20" class="local">Source code</a></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="page"><a name="page.operations" class="target">
+<h2>Operations</h2>
+</a>
+<ul>
+  <div>
+  <h3><a name="port.id0x05ca5e80">Port type <b>Soap_ApiPort</b></a><a
+ href="soap.api.html#src.id0x05ca5e80" class="local">Source code</a></h3>
+  <ol>
+    <li class="operation"><big><b><a name="op.id0x05cc3160">capture</a></b></big>
+      <div class="value"><a href="soap.api.html#src.id0x05cc3160"
+ class="local">Source code</a></div>
+      <div class="label">Description:</div>
+      <div class="value">finalize a payment<br>
+      </div>
+      <div class="label">Operation type:</div>
+      <div class="value"><i>Request-response.</i> The endpoint receives
+a message, and sends a correlated message.</div>
+      <div class="label">SOAP action:</div>
+      <div class="value">https://www.mobilpay.ro/api#capture</div>
+      <div class="label">Input:</div>
+      <div class="value">captureRequest (soap:body, use = encoded)<a
+ href="soap.api.html#src.id0x062ef4a0" class="local">Source code</a></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>sessionId</b><small
+ style="color: blue;"> type <big><i>string<br>
+Is onbtained by a login request<br>
+      </i></big></small></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>sacId</b><small
+ style="color: blue;"> type <big><i>string<br>
+Unique seller account identifier (xxx-xxx-xxx-xxx-xxx) provided from
+Mobilpay<br>
+      </i></big></small></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>merchantId</b><small
+ style="color: blue;"> type <big><i>string<br>
+Merchant unique ID used to init a transaction<br>
+      </i></big></small></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>amount</b><small
+ style="color: blue;"> type <big><i>float<br>
+The amount to be captured can be less or equal with the amount
+preauthorized. If the amount is less then the amount authorized, the
+rest will be released<br>
+      </i></big></small></div>
+      <div class="label">Output:</div>
+      <div class="value">captureResponse (soap:body, use = encoded)<a
+ href="soap.api.html#src.id0x062ef4c0" class="local">Source code</a></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>return</b><small
+ style="color: blue;"> type <big><i>boolean</i></big></small></div>
+    </li>
+    <li class="operation"><big><b><a name="op.id0x05cc3240">credit</a></b></big>
+      <div class="value"><a href="soap.api.html#src.id0x05cc3240"
+ class="local">Source code</a></div>
+      <div class="label">Description:</div>
+      <div class="value">cancel a payment<br>
+      </div>
+      <div class="label">Operation type:</div>
+      <div class="value"><i>Request-response.</i> The endpoint receives
+a message, and sends a correlated message.</div>
+      <div class="label">SOAP action:</div>
+      <div class="value">https://www.mobilpay.ro/api#credit</div>
+      <div class="label">Input:</div>
+      <div class="value">creditRequest (soap:body, use = encoded)<a
+ href="soap.api.html#src.id0x062ef7c0" class="local">Source code</a></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>sessionId</b><small
+ style="color: blue;"> type <big><i>string<br>
+      </i></big></small><small style="color: blue;"><big><i>Is
+onbtained by a login request</i></big></small><br>
+      </div>
+      <div style="margin-bottom: 3px;" class="value box"><b>sacId</b><small
+ style="color: blue;"> type <big><i>string<br>
+      </i></big></small><small style="color: blue;"><big><i>Unique
+seller account identifier (xxx-xxx-xxx-xxx-xxx) provided from Mobilpay</i></big></small><br>
+      </div>
+      <div style="margin-bottom: 3px;" class="value box"><b>merchantId</b><small
+ style="color: blue;"> type <big><i>string<br>
+      </i></big></small><small style="color: blue;"><big><i>Merchant
+unique ID used to init a transaction</i></big></small><br>
+      </div>
+      <div style="margin-bottom: 3px;" class="value box"><b>amount</b><small
+ style="color: blue;"> type <big><i>float<br>
+The amount to be refunded to cardholder. Must be less or equal with the
+amount captured.<br>
+      </i></big></small></div>
+      <div class="label">Output:</div>
+      <div class="value">creditResponse (soap:body, use = encoded)<a
+ href="soap.api.html#src.id0x062ef7e0" class="local">Source code</a></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>return</b><small
+ style="color: blue;"> type <big><i>boolean</i></big></small></div>
+    </li>
+    <li class="operation"><big><b><a name="op.id0x05cc3740">logIn</a></b></big>
+      <div class="value"><a href="soap.api.html#src.id0x05cc3740"
+ class="local">Source code</a></div>
+      <div class="label">Description:</div>
+      <div class="value">log in an user <br>
+use this call in order to make aditional Api calls<br>
+returns an unique user session identifier</div>
+      <div class="label">Operation type:</div>
+      <div class="value"><i>Request-response.</i> The endpoint receives
+a message, and sends a correlated message.</div>
+      <div class="label">SOAP action:</div>
+      <div class="value">https://www.mobilpay.ro/api#logIn</div>
+      <div class="label">Input:</div>
+      <div class="value">logInRequest (soap:body, use = encoded)<a
+ href="soap.api.html#src.id0x062f1960" class="local">Source code</a></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>username</b><small
+ style="color: blue;"> type <big><i>string</i></big></small></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>password</b><small
+ style="color: blue;"> type <big><i>string</i></big></small></div>
+      <div class="label">Output:</div>
+      <div class="value">logInResponse (soap:body, use = encoded)<a
+ href="soap.api.html#src.id0x062f1d00" class="local">Source code</a></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>return</b><small
+ style="color: blue;"> type <big><i>string</i></big></small></div>
+    </li>
+    <li class="operation"><big><b><a name="op.id0x05cc30a0">registerCompany</a></b></big>
+      <div class="value"><a href="soap.api.html#src.id0x05cc30a0"
+ class="local">Source code</a></div>
+      <div class="label">Description:</div>
+      <div class="value">register a new company</div>
+      <div class="label">Operation type:</div>
+      <div class="value"><i>Request-response.</i> The endpoint receives
+a message, and sends a correlated message.</div>
+      <div class="label">SOAP action:</div>
+      <div class="value">https://www.mobilpay.ro/api#registerCompany</div>
+      <div class="label">Input:</div>
+      <div class="value">registerCompanyRequest (soap:body, use =
+encoded)<a href="soap.api.html#src.id0x062ebee0" class="local">Source
+code</a></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>sessionId</b><small
+ style="color: blue;"> type <big><i>string</i></big></small></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>user</b><small
+ style="color: blue;"> type <big><i>Soap_Type_User</i></big></small>
+      <ul style="list-style-type: disc;">
+        <li>username<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>password<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>person<small style="color: blue;"> type <big><i>Soap_Type_Person</i></big></small>
+          <ul style="list-style-type: disc;">
+            <li>first_name<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>last_name<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>contacts<small style="color: blue;"> type <big><i>ArrayOfSoap_Type_Contact</i></big>
+- array of type <big><i>Soap_Type_Contact</i></big></small>
+              <ul style="list-style-type: disc;">
+                <li>phone<small style="color: blue;"> type <big><i>string</i></big></small></li>
+                <li>email<small style="color: blue;"> type <big><i>string</i></big></small></li>
+                <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+              </ul>
+            </li>
+            <li>type<small style="color: blue;"> type <big><i>int</i></big></small></li>
+            <ul>
+              <li><small style="color: blue;"><big><i>values are 1 for
+comercial, 2 for tehnical<br>
+                </i></big></small></li>
+            </ul>
+            <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+          </ul>
+        </li>
+        <li>id<small style="color: blue;"> type <big><i>int</i></big></small></li>
+        <ul>
+          <li><span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="color: rgb(0, 0, 255); font-family: Arial,Helvetica,sans-serif; font-size: 13px; line-height: 15px;"><i>ignored
+in
+request</i></span></span></li>
+        </ul>
+        <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+      </ul>
+      </div>
+      <div style="margin-bottom: 3px;" class="value box"><b>company</b><small
+ style="color: blue;"> type <big><i>Soap_Type_Company</i></big></small>
+      <ul style="list-style-type: disc;">
+        <li>id<small style="color: blue;"> type <big><i>int</i></big></small></li>
+        <ul>
+          <li><small style="color: blue;"><big><i>ignored in request<br>
+            </i></big></small></li>
+        </ul>
+        <li>name<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>type<small style="color: blue;"> type <big><i>int</i></big></small></li>
+        <ul>
+          <li><small style="color: blue;"><big><i>values are 1 for
+company, 2 for freelancer<br>
+            </i></big></small></li>
+        </ul>
+        <li>code<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>reg_code<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>vat<small style="color: blue;"> type <big><i>boolean</i></big></small></li>
+        <ul>
+          <li><span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="color: rgb(0, 0, 255); font-family: Arial,Helvetica,sans-serif; font-size: 13px; line-height: 15px;"><i>send
+true
+if &nbsp;company &nbsp;has Value added tax (VAT), or goods and
+services tax (GST)</i></span></span></li>
+        </ul>
+        <li>payment_methods<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+        <ul>
+          <li><span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="color: rgb(0, 0, 255); font-family: Arial,Helvetica,sans-serif; font-size: 13px; line-height: 15px;"><i>values
+are
+1 for SMS, 2 for CREDIT CARD</i></span></span></li>
+        </ul>
+        <li>address<small style="color: blue;"> type <big><i>Soap_Type_Address</i></big></small>
+          <ul style="list-style-type: disc;">
+            <li>country<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>county<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>address<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>postal_code<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+          </ul>
+        </li>
+        <li>bank<small style="color: blue;"> type <big><i>Soap_Type_Bank</i></big></small>
+          <ul style="list-style-type: disc;">
+            <li>name<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>branch<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>iban<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+          </ul>
+        </li>
+        <li>fax<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>seller_accounts<small style="color: blue;"> type <big><i>ArrayOfSoap_Type_Seller_Account</i></big>
+- array of type <big><i>Soap_Type_Seller_Account</i></big></small>
+          <ul style="list-style-type: disc;">
+            <li>id<small style="color: blue;"> type <big><i>int</i></big></small></li>
+            <ul>
+              <li><small style="color: blue;"><big><i>ignored in request<br>
+                </i></big></small></li>
+            </ul>
+            <li>name<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>description<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>under_contruction<small style="color: blue;"> type <big><i>boolean</i></big></small></li>
+            <ul>
+              <li><span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="color: rgb(0, 0, 255); font-family: Arial,Helvetica,sans-serif; font-size: 13px; line-height: 15px;"><i>send
+true
+if the site is underconstruction</i></span></span></li>
+            </ul>
+            <li>payment_methods<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+            <ul>
+              <li><span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="color: rgb(0, 0, 255); font-family: Arial,Helvetica,sans-serif; font-size: 13px; line-height: 15px;"><i>values
+are
+1 for SMS, 2 for CREDIT CARD</i></span></span></li>
+            </ul>
+            <li>url<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>confirm_url<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>return_url<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>mobilpay_key<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>merchant_key<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>signature<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+          </ul>
+        </li>
+        <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+      </ul>
+      </div>
+      <div style="margin-bottom: 3px;" class="value box"><b>tehnical_person</b><small
+ style="color: blue;"> type <big><i>Soap_Type_Person</i></big></small>
+      <ul style="list-style-type: disc;">
+        <li>first_name<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>last_name<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>contacts<small style="color: blue;"> type <big><i>ArrayOfSoap_Type_Contact</i></big>
+- array of type <big><i>Soap_Type_Contact</i></big></small>
+          <ul style="list-style-type: disc;">
+            <li>phone<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>email<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+          </ul>
+        </li>
+        <li>type<small style="color: blue;"> type <big><i>int</i></big></small></li>
+        <ul>
+          <li><span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="color: rgb(0, 0, 255); font-family: Arial,Helvetica,sans-serif; font-size: 13px; line-height: 15px;"><i>values
+are
+1 for comercial, 2 for tehnical</i></span></span></li>
+        </ul>
+        <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+      </ul>
+      </div>
+      <div class="label">Output:</div>
+      <div class="value">registerCompanyResponse (soap:body, use =
+encoded)<a href="soap.api.html#src.id0x062ebf00" class="local">Source
+code</a></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>return</b><small
+ style="color: blue;"> type <big><i>Soap_Type_Company</i></big></small>
+      <ul style="list-style-type: disc;">
+        <li>id<small style="color: blue;"> type <big><i>int</i></big></small></li>
+        <li>name<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>type<small style="color: blue;"> type <big><i>int</i></big></small></li>
+        <li>code<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>reg_code<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>vat<small style="color: blue;"> type <big><i>boolean</i></big></small></li>
+        <li>payment_methods<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+        <li>address<small style="color: blue;"> type <big><i>Soap_Type_Address</i></big></small>
+          <ul style="list-style-type: disc;">
+            <li>country<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>county<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>address<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>postal_code<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+          </ul>
+        </li>
+        <li>bank<small style="color: blue;"> type <big><i>Soap_Type_Bank</i></big></small>
+          <ul style="list-style-type: disc;">
+            <li>name<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>branch<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>iban<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+          </ul>
+        </li>
+        <li>fax<small style="color: blue;"> type <big><i>string</i></big></small></li>
+        <li>seller_accounts<small style="color: blue;"> type <big><i>ArrayOfSoap_Type_Seller_Account</i></big>
+- array of type <big><i>Soap_Type_Seller_Account</i></big></small>
+          <ul style="list-style-type: disc;">
+            <li>id<small style="color: blue;"> type <big><i>int</i></big></small></li>
+            <li>name<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>description<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>under_contruction<small style="color: blue;"> type <big><i>boolean</i></big></small></li>
+            <li>payment_methods<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+            <li>url<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>confirm_url<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>return_url<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>mobilpay_key<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <ul>
+              <li><span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="color: rgb(0, 0, 255); font-family: Arial,Helvetica,sans-serif; font-size: 13px; line-height: 15px;"><i>key
+used
+to encrypt payment request</i></span></span></li>
+            </ul>
+            <li>merchant_key<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <ul>
+              <li><span class="Apple-style-span"
+ style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+ class="Apple-style-span"
+ style="color: rgb(0, 0, 255); font-family: Arial,Helvetica,sans-serif; font-size: 13px; line-height: 15px;"><i>key
+used
+to decrypt mobilpay confirmations</i></span></span></li>
+            </ul>
+            <li>signature<small style="color: blue;"> type <big><i>string</i></big></small></li>
+            <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+          </ul>
+        </li>
+        <li>errors<small style="color: blue;"> type <big><i>Array</i></big></small></li>
+      </ul>
+      </div>
+    </li>
+    <li><big><b><a name="op.id0x05ca5f20">validateRequest</a></b></big>
+      <div class="value"><a href="soap.api.html#src.id0x05ca5f20"
+ class="local">Source code</a></div>
+      <div class="label">Description:</div>
+      <div class="value">TBC</div>
+      <div class="label">Operation type:</div>
+      <div class="value"><i>Request-response.</i> The endpoint receives
+a message, and sends a correlated message.</div>
+      <div class="label">SOAP action:</div>
+      <div class="value">https://www.mobilpay.ro/api#validateRequest</div>
+      <div class="label">Input:</div>
+      <div class="value">validateRequestRequest (soap:body, use =
+encoded)<a href="soap.api.html#src.id0x061afaa0" class="local">Source
+code</a></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>sessionId</b><small
+ style="color: blue;"> type <big><i>string</i></big></small></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>request</b><small
+ style="color: blue;"> type <big><i>Array</i></big></small></div>
+      <div class="label">Output:</div>
+      <div class="value">validateRequestResponse (soap:body, use =
+encoded)<a href="soap.api.html#src.id0x061afbe0" class="local">Source
+code</a></div>
+      <div style="margin-bottom: 3px;" class="value box"><b>return</b><small
+ style="color: blue;"> type <big><i>Array</i></big></small></div>
+    </li>
+  </ol>
+  </div>
+</ul>
+</div>
+<div class="page"><a name="page.src" class="target">
+<h2>WSDL source code</h2>
+</a>
+<div class="box">
+<div class="xml-proc">&lt;?xml version="1.0"?&gt;</div>
+<div class="xml-proc">&lt;?xml-stylesheet type="text/xsl"
+href="wsdl-viewer.xsl" ?&gt;</div>
+<div class="xml-element"><a name="src.id0x05ca5e00">&lt;definitions
+<span class="xml-att">name=<span class="xml-att-val">"Soap_Api"</span></span>
+<span class="xml-att">targetNamespace=<span class="xml-att-val">"https://www.mobilpay.ro/api"</span></span><span
+ class="xml-att"> xmlns=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x05ca5e80">&lt;portType
+<span class="xml-att">name=<span class="xml-att-val">"Soap_ApiPort"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x05ca5f20">&lt;operation
+<span class="xml-att">name=<span class="xml-att-val">"validateRequest"</span></span>&gt;</a>
+<div class="xml-element"><a href="soap.api.html#src.id0x061afaa0"
+ name="src.id0x05ca5f60">&lt;input <span class="xml-att">message=<span
+ class="xml-att-val">"tns:validateRequestRequest"</span></span> /&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x061afbe0"
+ name="src.id0x05ca5fc0">&lt;output <span class="xml-att">message=<span
+ class="xml-att-val">"tns:validateRequestResponse"</span></span> /&gt;</a></div>
+&lt;/operation&gt;</div>
+<div class="xml-element"><a name="src.id0x05cc30a0">&lt;operation
+<span class="xml-att">name=<span class="xml-att-val">"registerCompany"</span></span>&gt;</a>
+<div class="xml-element"><a href="soap.api.html#src.id0x062ebee0"
+ name="src.id0x05cc30e0">&lt;input <span class="xml-att">message=<span
+ class="xml-att-val">"tns:registerCompanyRequest"</span></span> /&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x062ebf00"
+ name="src.id0x05cc3120">&lt;output <span class="xml-att">message=<span
+ class="xml-att-val">"tns:registerCompanyResponse"</span></span> /&gt;</a></div>
+&lt;/operation&gt;</div>
+<div class="xml-element"><a name="src.id0x05cc3160">&lt;operation
+<span class="xml-att">name=<span class="xml-att-val">"capture"</span></span>&gt;</a>
+<div class="xml-element"><a href="soap.api.html#src.id0x062ef4a0"
+ name="src.id0x05cc31c0">&lt;input <span class="xml-att">message=<span
+ class="xml-att-val">"tns:captureRequest"</span></span> /&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x062ef4c0"
+ name="src.id0x05cc3200">&lt;output <span class="xml-att">message=<span
+ class="xml-att-val">"tns:captureResponse"</span></span> /&gt;</a></div>
+&lt;/operation&gt;</div>
+<div class="xml-element"><a name="src.id0x05cc3240">&lt;operation
+<span class="xml-att">name=<span class="xml-att-val">"credit"</span></span>&gt;</a>
+<div class="xml-element"><a href="soap.api.html#src.id0x062ef7c0"
+ name="src.id0x05ca5ec0">&lt;input <span class="xml-att">message=<span
+ class="xml-att-val">"tns:creditRequest"</span></span> /&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x062ef7e0"
+ name="src.id0x05cc3540">&lt;output <span class="xml-att">message=<span
+ class="xml-att-val">"tns:creditResponse"</span></span> /&gt;</a></div>
+&lt;/operation&gt;</div>
+<div class="xml-element"><a name="src.id0x05cc3740">&lt;operation
+<span class="xml-att">name=<span class="xml-att-val">"logIn"</span></span>&gt;</a>
+<div class="xml-element"><a href="soap.api.html#src.id0x062f1960"
+ name="src.id0x05cc3820">&lt;input <span class="xml-att">message=<span
+ class="xml-att-val">"tns:logInRequest"</span></span> /&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x062f1d00"
+ name="src.id0x05cc6dc0">&lt;output <span class="xml-att">message=<span
+ class="xml-att-val">"tns:logInResponse"</span></span> /&gt;</a></div>
+&lt;/operation&gt;</div>
+&lt;/portType&gt;</div>
+<div class="xml-element"><a name="src.id0x05cc6f80">&lt;binding
+<span class="xml-att">name=<span class="xml-att-val">"Soap_ApiBinding"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"tns:Soap_ApiPort"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x05ccc6c0">&lt;soap:binding
+<span class="xml-att">style=<span class="xml-att-val">"rpc"</span></span>
+<span class="xml-att">transport=<span class="xml-att-val">"https://schemas.xmlsoap.org/soap/http"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x05ca5f20"
+ name="src.id0x05ccc740">&lt;operation <span class="xml-att">name=<span
+ class="xml-att-val">"validateRequest"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061af040">&lt;soap:operation
+<span class="xml-att">soapAction=<span class="xml-att-val">"https://www.mobilpay.ro/api#validateRequest"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061af0a0">&lt;input&gt;</a>
+<div class="xml-element"><a name="src.id0x061af0e0">&lt;soap:body
+<span class="xml-att">use=<span class="xml-att-val">"encoded"</span></span>
+<span class="xml-att">encodingStyle=<span class="xml-att-val">"https://schemas.xmlsoap.org/soap/encoding/"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+&lt;/input&gt;</div>
+<div class="xml-element"><a name="src.id0x061af160">&lt;output&gt;</a>
+<div class="xml-element"><a name="src.id0x061af180">&lt;soap:body
+<span class="xml-att">use=<span class="xml-att-val">"encoded"</span></span>
+<span class="xml-att">encodingStyle=<span class="xml-att-val">"https://schemas.xmlsoap.org/soap/encoding/"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+&lt;/output&gt;</div>
+&lt;/operation&gt;</div>
+<div class="xml-element"><a href="soap.api.html#src.id0x05cc30a0"
+ name="src.id0x061af200">&lt;operation <span class="xml-att">name=<span
+ class="xml-att-val">"registerCompany"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061af240">&lt;soap:operation
+<span class="xml-att">soapAction=<span class="xml-att-val">"https://www.mobilpay.ro/api#registerCompany"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061af280">&lt;input&gt;</a>
+<div class="xml-element"><a name="src.id0x061af2a0">&lt;soap:body
+<span class="xml-att">use=<span class="xml-att-val">"encoded"</span></span>
+<span class="xml-att">encodingStyle=<span class="xml-att-val">"https://schemas.xmlsoap.org/soap/encoding/"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+&lt;/input&gt;</div>
+<div class="xml-element"><a name="src.id0x061af320">&lt;output&gt;</a>
+<div class="xml-element"><a name="src.id0x061af340">&lt;soap:body
+<span class="xml-att">use=<span class="xml-att-val">"encoded"</span></span>
+<span class="xml-att">encodingStyle=<span class="xml-att-val">"https://schemas.xmlsoap.org/soap/encoding/"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+&lt;/output&gt;</div>
+&lt;/operation&gt;</div>
+<div class="xml-element"><a href="soap.api.html#src.id0x05cc3160"
+ name="src.id0x061af3c0">&lt;operation <span class="xml-att">name=<span
+ class="xml-att-val">"capture"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061af420">&lt;soap:operation
+<span class="xml-att">soapAction=<span class="xml-att-val">"https://www.mobilpay.ro/api#capture"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061af460">&lt;input&gt;</a>
+<div class="xml-element"><a name="src.id0x061af480">&lt;soap:body
+<span class="xml-att">use=<span class="xml-att-val">"encoded"</span></span>
+<span class="xml-att">encodingStyle=<span class="xml-att-val">"https://schemas.xmlsoap.org/soap/encoding/"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+&lt;/input&gt;</div>
+<div class="xml-element"><a name="src.id0x061af500">&lt;output&gt;</a>
+<div class="xml-element"><a name="src.id0x061af520">&lt;soap:body
+<span class="xml-att">use=<span class="xml-att-val">"encoded"</span></span>
+<span class="xml-att">encodingStyle=<span class="xml-att-val">"https://schemas.xmlsoap.org/soap/encoding/"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+&lt;/output&gt;</div>
+&lt;/operation&gt;</div>
+<div class="xml-element"><a href="soap.api.html#src.id0x05cc3240"
+ name="src.id0x061af5a0">&lt;operation <span class="xml-att">name=<span
+ class="xml-att-val">"credit"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061af600">&lt;soap:operation
+<span class="xml-att">soapAction=<span class="xml-att-val">"https://www.mobilpay.ro/api#credit"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061af640">&lt;input&gt;</a>
+<div class="xml-element"><a name="src.id0x061af660">&lt;soap:body
+<span class="xml-att">use=<span class="xml-att-val">"encoded"</span></span>
+<span class="xml-att">encodingStyle=<span class="xml-att-val">"https://schemas.xmlsoap.org/soap/encoding/"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+&lt;/input&gt;</div>
+<div class="xml-element"><a name="src.id0x061af6e0">&lt;output&gt;</a>
+<div class="xml-element"><a name="src.id0x061af700">&lt;soap:body
+<span class="xml-att">use=<span class="xml-att-val">"encoded"</span></span>
+<span class="xml-att">encodingStyle=<span class="xml-att-val">"https://schemas.xmlsoap.org/soap/encoding/"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+&lt;/output&gt;</div>
+&lt;/operation&gt;</div>
+<div class="xml-element"><a href="soap.api.html#src.id0x05cc3740"
+ name="src.id0x061af780">&lt;operation <span class="xml-att">name=<span
+ class="xml-att-val">"logIn"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061af7e0">&lt;soap:operation
+<span class="xml-att">soapAction=<span class="xml-att-val">"https://www.mobilpay.ro/api#logIn"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061af820">&lt;input&gt;</a>
+<div class="xml-element"><a name="src.id0x061af840">&lt;soap:body
+<span class="xml-att">use=<span class="xml-att-val">"encoded"</span></span>
+<span class="xml-att">encodingStyle=<span class="xml-att-val">"https://schemas.xmlsoap.org/soap/encoding/"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+&lt;/input&gt;</div>
+<div class="xml-element"><a name="src.id0x061af8c0">&lt;output&gt;</a>
+<div class="xml-element"><a name="src.id0x061af8e0">&lt;soap:body
+<span class="xml-att">use=<span class="xml-att-val">"encoded"</span></span>
+<span class="xml-att">encodingStyle=<span class="xml-att-val">"https://schemas.xmlsoap.org/soap/encoding/"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+&lt;/output&gt;</div>
+&lt;/operation&gt;</div>
+&lt;/binding&gt;</div>
+<div class="xml-element"><a name="src.id0x061af980">&lt;service
+<span class="xml-att">name=<span class="xml-att-val">"Soap_ApiService"</span></span>&gt;</a>
+<div class="xml-element"><a href="soap.api.html#src.id0x05cc6f80"
+ name="src.id0x061af9e0">&lt;port <span class="xml-att">name=<span
+ class="xml-att-val">"Soap_ApiPort"</span></span> <span class="xml-att">binding=<span
+ class="xml-att-val">"tns:Soap_ApiBinding"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061afa40">&lt;soap:address
+<span class="xml-att">location=<span class="xml-att-val">"https://www.mobilpay.ro/api"</span></span><span
+ class="xml-att"> xmlns:soap=<span class="xml-att-val">"https://schemas.xmlsoap.org/wsdl/soap/"</span></span>
+/&gt;</a></div>
+&lt;/port&gt;</div>
+&lt;/service&gt;</div>
+<div class="xml-element"><a name="src.id0x061afaa0">&lt;message
+<span class="xml-att">name=<span class="xml-att-val">"validateRequestRequest"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061afb00">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"sessionId"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061afb80">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"request"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"soap-enc:Array"</span></span>
+/&gt;</a></div>
+&lt;/message&gt;</div>
+<div class="xml-element"><a name="src.id0x061afbe0">&lt;message
+<span class="xml-att">name=<span class="xml-att-val">"validateRequestResponse"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061afc20">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"return"</span></span> <span
+ class="xml-att">type=<span class="xml-att-val">"soap-enc:Array"</span></span>
+/&gt;</a></div>
+&lt;/message&gt;</div>
+<div class="xml-element"><a name="src.id0x061afca0">&lt;types&gt;</a>
+<div class="xml-element"><a name="src.id0x061afce0">&lt;xsd:schema
+<span class="xml-att">targetNamespace=<span class="xml-att-val">"https://www.mobilpay.ro/api"</span></span><span
+ class="xml-att"> xmlns:xsd=<span class="xml-att-val">"https://www.w3.org/2001/XMLSchema"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061afd60">&lt;xsd:complexType
+<span class="xml-att">name=<span class="xml-att-val">"ArrayOfSoap_Type_Contact"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061afdc0">&lt;xsd:complexContent&gt;</a>
+<div class="xml-element"><a name="src.id0x061afe20">&lt;xsd:restriction
+<span class="xml-att">base=<span class="xml-att-val">"soap-enc:Array"</span></span>&gt;</a>
+<div class="xml-element"><a href="soap.api.html#src.id0x061aff80"
+ name="src.id0x061aff20">&lt;xsd:attribute <span class="xml-att">ref=<span
+ class="xml-att-val">"soap-enc:arrayType"</span></span> <span
+ class="xml-att">wsdl:arrayType=<span class="xml-att-val">"tns:Soap_Type_Contact[]"</span></span>
+<span class="xml-att">minOccurs=<span class="xml-att-val">"0"</span></span>
+<span class="xml-att">maxOccurs=<span class="xml-att-val">"unbounded"</span></span>
+<span class="xml-att">use=<span class="xml-att-val">"optional"</span></span>
+/&gt;</a></div>
+&lt;/xsd:restriction&gt;</div>
+&lt;/xsd:complexContent&gt;</div>
+&lt;/xsd:complexType&gt;</div>
+<div class="xml-element"><a name="src.id0x061aff80">&lt;xsd:complexType
+<span class="xml-att">name=<span class="xml-att-val">"Soap_Type_Contact"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061affe0">&lt;xsd:all&gt;</a>
+<div class="xml-element"><a name="src.id0x061bd040">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"phone"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bd0e0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"email"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bd160">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"errors"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"soap-enc:Array"</span></span>
+/&gt;</a></div>
+&lt;/xsd:all&gt;</div>
+&lt;/xsd:complexType&gt;</div>
+<div class="xml-element"><a name="src.id0x061bd1c0">&lt;xsd:complexType
+<span class="xml-att">name=<span class="xml-att-val">"Soap_Type_Person"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061bd200">&lt;xsd:all&gt;</a>
+<div class="xml-element"><a name="src.id0x061bd220">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"first_name"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bd2c0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"last_name"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x061afd60"
+ name="src.id0x061bd340">&lt;xsd:element <span class="xml-att">name=<span
+ class="xml-att-val">"contacts"</span></span> <span class="xml-att">type=<span
+ class="xml-att-val">"tns:ArrayOfSoap_Type_Contact"</span></span> /&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bd3a0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"type"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:int"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bd420">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"errors"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"soap-enc:Array"</span></span>
+/&gt;</a></div>
+&lt;/xsd:all&gt;</div>
+&lt;/xsd:complexType&gt;</div>
+<div class="xml-element"><a name="src.id0x05ca5d00">&lt;xsd:complexType
+<span class="xml-att">name=<span class="xml-att-val">"Soap_Type_User"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061af080">&lt;xsd:all&gt;</a>
+<div class="xml-element"><a name="src.id0x061afd00">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"username"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bd520">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"password"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x061bd1c0"
+ name="src.id0x061bd5a0">&lt;xsd:element <span class="xml-att">name=<span
+ class="xml-att-val">"person"</span></span> <span class="xml-att">type=<span
+ class="xml-att-val">"tns:Soap_Type_Person"</span></span> /&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bd600">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"id"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:int"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bd660">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"errors"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"soap-enc:Array"</span></span>
+/&gt;</a></div>
+&lt;/xsd:all&gt;</div>
+&lt;/xsd:complexType&gt;</div>
+<div class="xml-element"><a name="src.id0x061bd6c0">&lt;xsd:complexType
+<span class="xml-att">name=<span class="xml-att-val">"Soap_Type_Address"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061bd700">&lt;xsd:all&gt;</a>
+<div class="xml-element"><a name="src.id0x061bd720">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"country"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bd8c0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"county"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bd940">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"address"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bd9c0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"postal_code"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bda40">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"errors"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"soap-enc:Array"</span></span>
+/&gt;</a></div>
+&lt;/xsd:all&gt;</div>
+&lt;/xsd:complexType&gt;</div>
+<div class="xml-element"><a name="src.id0x061bdaa0">&lt;xsd:complexType
+<span class="xml-att">name=<span class="xml-att-val">"Soap_Type_Bank"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061bdae0">&lt;xsd:all&gt;</a>
+<div class="xml-element"><a name="src.id0x061bdb00">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"name"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bdba0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"branch"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bdc40">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"iban"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bdcc0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"errors"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"soap-enc:Array"</span></span>
+/&gt;</a></div>
+&lt;/xsd:all&gt;</div>
+&lt;/xsd:complexType&gt;</div>
+<div class="xml-element"><a name="src.id0x061bdd20">&lt;xsd:complexType
+<span class="xml-att">name=<span class="xml-att-val">"ArrayOfSoap_Type_Seller_Account"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061bdd60">&lt;xsd:complexContent&gt;</a>
+<div class="xml-element"><a name="src.id0x061bdd80">&lt;xsd:restriction
+<span class="xml-att">base=<span class="xml-att-val">"soap-enc:Array"</span></span>&gt;</a>
+<div class="xml-element"><a href="soap.api.html#src.id0x061bde40"
+ name="src.id0x061bdde0">&lt;xsd:attribute <span class="xml-att">ref=<span
+ class="xml-att-val">"soap-enc:arrayType"</span></span> <span
+ class="xml-att">wsdl:arrayType=<span class="xml-att-val">"tns:Soap_Type_Seller_Account[]"</span></span>
+<span class="xml-att">minOccurs=<span class="xml-att-val">"0"</span></span>
+<span class="xml-att">maxOccurs=<span class="xml-att-val">"unbounded"</span></span>
+<span class="xml-att">use=<span class="xml-att-val">"optional"</span></span>
+/&gt;</a></div>
+&lt;/xsd:restriction&gt;</div>
+&lt;/xsd:complexContent&gt;</div>
+&lt;/xsd:complexType&gt;</div>
+<div class="xml-element"><a name="src.id0x061bde40">&lt;xsd:complexType
+<span class="xml-att">name=<span class="xml-att-val">"Soap_Type_Seller_Account"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x061bde80">&lt;xsd:all&gt;</a>
+<div class="xml-element"><a name="src.id0x061bdea0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"id"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:int"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bdf60">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"name"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x06205c60">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"description"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062111c0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"under_contruction"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:boolean"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x06211320">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"payment_methods"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"soap-enc:Array"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x0622d8c0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"url"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x061bdf20">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"confirm_url"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062a89a0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"return_url"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062e2fc0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"mobilpay_key"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062eb040">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"merchant_key"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062eb0e0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"signature"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062eb220">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"errors"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"soap-enc:Array"</span></span>
+/&gt;</a></div>
+&lt;/xsd:all&gt;</div>
+&lt;/xsd:complexType&gt;</div>
+<div class="xml-element"><a name="src.id0x062eb280">&lt;xsd:complexType
+<span class="xml-att">name=<span class="xml-att-val">"Soap_Type_Company"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x062eb2e0">&lt;xsd:all&gt;</a>
+<div class="xml-element"><a name="src.id0x062eb300">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"id"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:int"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062eb420">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"name"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062eb4a0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"type"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:int"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062eb580">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"code"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062eb620">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"reg_code"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062ebc60">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"vat"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:boolean"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062eb360">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"payment_methods"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"soap-enc:Array"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x061bd6c0"
+ name="src.id0x062ebd00">&lt;xsd:element <span class="xml-att">name=<span
+ class="xml-att-val">"address"</span></span> <span class="xml-att">type=<span
+ class="xml-att-val">"tns:Soap_Type_Address"</span></span> /&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x061bdaa0"
+ name="src.id0x062ebd60">&lt;xsd:element <span class="xml-att">name=<span
+ class="xml-att-val">"bank"</span></span> <span class="xml-att">type=<span
+ class="xml-att-val">"tns:Soap_Type_Bank"</span></span> /&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062ebde0">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"fax"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x061bdd20"
+ name="src.id0x062ebe40">&lt;xsd:element <span class="xml-att">name=<span
+ class="xml-att-val">"seller_accounts"</span></span> <span
+ class="xml-att">type=<span class="xml-att-val">"tns:ArrayOfSoap_Type_Seller_Account"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062ebe80">&lt;xsd:element
+<span class="xml-att">name=<span class="xml-att-val">"errors"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"soap-enc:Array"</span></span>
+/&gt;</a></div>
+&lt;/xsd:all&gt;</div>
+&lt;/xsd:complexType&gt;</div>
+&lt;/xsd:schema&gt;</div>
+&lt;/types&gt;</div>
+<div class="xml-element"><a name="src.id0x062ebee0">&lt;message
+<span class="xml-att">name=<span class="xml-att-val">"registerCompanyRequest"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x062ebf20">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"sessionId"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x05ca5d00"
+ name="src.id0x062ef240">&lt;part <span class="xml-att">name=<span
+ class="xml-att-val">"user"</span></span> <span class="xml-att">type=<span
+ class="xml-att-val">"tns:Soap_Type_User"</span></span> /&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x062eb280"
+ name="src.id0x062ef340">&lt;part <span class="xml-att">name=<span
+ class="xml-att-val">"company"</span></span> <span class="xml-att">type=<span
+ class="xml-att-val">"tns:Soap_Type_Company"</span></span> /&gt;</a></div>
+<div class="xml-element"><a href="soap.api.html#src.id0x061bd1c0"
+ name="src.id0x062ef3a0">&lt;part <span class="xml-att">name=<span
+ class="xml-att-val">"tehnical_person"</span></span> <span
+ class="xml-att">type=<span class="xml-att-val">"tns:Soap_Type_Person"</span></span>
+/&gt;</a></div>
+&lt;/message&gt;</div>
+<div class="xml-element"><a name="src.id0x062ebf00">&lt;message
+<span class="xml-att">name=<span class="xml-att-val">"registerCompanyResponse"</span></span>&gt;</a>
+<div class="xml-element"><a href="soap.api.html#src.id0x062eb280"
+ name="src.id0x062ef400">&lt;part <span class="xml-att">name=<span
+ class="xml-att-val">"return"</span></span> <span class="xml-att">type=<span
+ class="xml-att-val">"tns:Soap_Type_Company"</span></span> /&gt;</a></div>
+&lt;/message&gt;</div>
+<div class="xml-element"><a name="src.id0x062ef4a0">&lt;message
+<span class="xml-att">name=<span class="xml-att-val">"captureRequest"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x062ef500">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"sessionId"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062ef5a0">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"sacId"</span></span> <span
+ class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062ef620">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"merchantId"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062ef6a0">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"amount"</span></span> <span
+ class="xml-att">type=<span class="xml-att-val">"xsd:float"</span></span>
+/&gt;</a></div>
+&lt;/message&gt;</div>
+<div class="xml-element"><a name="src.id0x062ef4c0">&lt;message
+<span class="xml-att">name=<span class="xml-att-val">"captureResponse"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x062ef740">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"return"</span></span> <span
+ class="xml-att">type=<span class="xml-att-val">"xsd:boolean"</span></span>
+/&gt;</a></div>
+&lt;/message&gt;</div>
+<div class="xml-element"><a name="src.id0x062ef7c0">&lt;message
+<span class="xml-att">name=<span class="xml-att-val">"creditRequest"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x062ef800">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"sessionId"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062ef880">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"sacId"</span></span> <span
+ class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062ef900">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"merchantId"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062ef980">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"amount"</span></span> <span
+ class="xml-att">type=<span class="xml-att-val">"xsd:float"</span></span>
+/&gt;</a></div>
+&lt;/message&gt;</div>
+<div class="xml-element"><a name="src.id0x062ef7e0">&lt;message
+<span class="xml-att">name=<span class="xml-att-val">"creditResponse"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x062efb00">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"return"</span></span> <span
+ class="xml-att">type=<span class="xml-att-val">"xsd:boolean"</span></span>
+/&gt;</a></div>
+&lt;/message&gt;</div>
+<div class="xml-element"><a name="src.id0x062f1960">&lt;message
+<span class="xml-att">name=<span class="xml-att-val">"logInRequest"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x062f19a0">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"username"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+<div class="xml-element"><a name="src.id0x062f1b80">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"password"</span></span>
+<span class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+&lt;/message&gt;</div>
+<div class="xml-element"><a name="src.id0x062f1d00">&lt;message
+<span class="xml-att">name=<span class="xml-att-val">"logInResponse"</span></span>&gt;</a>
+<div class="xml-element"><a name="src.id0x062f1d40">&lt;part <span
+ class="xml-att">name=<span class="xml-att-val">"return"</span></span> <span
+ class="xml-att">type=<span class="xml-att-val">"xsd:string"</span></span>
+/&gt;</a></div>
+&lt;/message&gt;</div>
+&lt;/definitions&gt;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
