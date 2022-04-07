@@ -94,7 +94,9 @@ export function uid() {
  * This method creates a token that can be used for future payments.
  *
  * @param {String} amount
- * @param {Object} billing Billing information (address, email, phone) required and
+ * @param {Object} billing Billing information 
+ *  (address, email, phone) required and 
+ *  type [person|company, default: person] is optional
  * @returns string
  */
 async function createPayment(amount, billing) {
