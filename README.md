@@ -4,7 +4,7 @@
 Copy the package to modules/netopia and install dependencies
 
 ```sh
-  npm i ./modules/netopia
+  npm i ./modules/netopia-js
 ```
 
 Set the environment variables
