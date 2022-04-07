@@ -207,10 +207,17 @@ const response = await Netopia.createSimplePayment(
     email: "contact@cmevo.com", // required
     phone: "071034782", // required
     description: "the product or service description", // required
-  });
+  },
+  {
+    // pass custom params that will be returned to you on IPN later
+    "userId": 1,
+    "internalPaymentId": "3sad3",
+    "foo": "bar"
+  }
+);
 ```
 
-This method can be use to register a card, or use the alias `registerCard(amount, billing)`. Is the same function.
+This method can be use to register a card, or use the alias `registerCard(amount, billing, params)`. Is the same function.
 
 If your seller account has an user which is activated for token usage, you'll receive on IPN a token. Save it for further payments.
 

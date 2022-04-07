@@ -99,7 +99,7 @@ export function uid() {
  *  type [person|company, default: person] is optional
  * @returns string
  */
-async function createPayment(amount, billing) {
+async function createPayment(amount, billing, params = {}) {
   const xml = builder.buildObject({
     order: {
       $: {
@@ -141,6 +141,9 @@ async function createPayment(amount, billing) {
           // },
         },
       },
+      params: {
+        param: prepareParamsForNetopia(params)
+      }
     },
   });
 
