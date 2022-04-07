@@ -12,6 +12,8 @@ Set the environment variables
 ```sh
 # or something else, for example  local, staging
 ENVIRONMENT=production
+# your fallback url, after the payment is made the user will be redirected to this screen
+NETOPIA_BASE_URL=http://localhost
  # your webhook url where Netopia sends confirmation messages
 NETOPIA_WEBHOOK_URL=http://localhost:8000/api/v1/webhooks/netopia
 # the seller account id found in Admin > Seller Accounts > in the table press edit near the seller account >
@@ -105,11 +107,89 @@ import Netopia from '../../../modules/netopia'
 )
 ```
 
+(#ipn-response)
 ### IPN response example
 
-<!-- todo: add an ipn example -->
 ```json
-
+{
+  "decoded": {
+    "order": {
+      "$": {
+        "id": "l1or6vvj25sw9uxlae0g",
+        "timestamp": "1649321087455",
+        "type": "card"
+      },
+      "signature": "87Y7-EA62-UDK4-8EW2-4PQE",
+      "url": {
+        "return": "http://localhost:8000",
+        "confirm": "http://localhost:8000/api/v1/webhooks/netopia"
+      },
+      "invoice": {
+        "$": {
+          "currency": "RON",
+          "amount": "1"
+        },
+        "details": "test plata",
+        "contact_info": {
+          "billing": {
+            "$": {
+              "type": "person"
+            },
+            "first_name": "John",
+            "last_name": "Doe",
+            "address": "my street",
+            "email": "contact@cmevo.com",
+            "mobile_phone": "071034782"
+          },
+          "shipping": {
+            "$": {
+              "type": "person"
+            },
+            "first_name": "John",
+            "last_name": "Doe",
+            "address": "my street",
+            "email": "contact@cmevo.com",
+            "mobile_phone": "071034782"
+          }
+        }
+      },
+      "mobilpay": {
+        "$": {
+          "timestamp": "20220407115352",
+          "crc": "536ef5f26486b6071161bc0ad4a2263b"
+        },
+        "action": "paid",
+        "customer": {
+          "$": {
+            "type": "person"
+          },
+          "first_name": "John",
+          "last_name": "Doe",
+          "address": "my+street",
+          "email": "contact%40cmevo.com",
+          "mobile_phone": "071034782"
+        },
+        "purchase": "1334168",
+        "original_amount": "1.00",
+        "processed_amount": "1.00",
+        "current_payment_count": "1",
+        "pan_masked": "9****5098",
+        "rrn": "9991649",
+        "payment_instrument_id": "41679",
+        "token_id": "MTUyOTI0OsFnpdPjsR3KzdyA1KKC5BHlVdHDrqbizsPYR39SlVuRrVbR6sBfr0tQPx5YxImCEIrIPShZ8nKcdsw/TFQR86c=",
+        "token_expiration_date": "2024-04-07 11:53:52",
+        "error": {
+          "_": "Tranzactie aprobata",
+          "$": {
+            "code": "0"
+          }
+        }
+      }
+    }
+  },
+  "response": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<crc>success</crc>",
+  "success": true
+}
 ```
 
 ## How to create a simple payment or add the card in Netopia
@@ -134,7 +214,9 @@ This method can be use to register a card, or use the alias `registerCard(amount
 
 If your seller account has an user which is activated for token usage, you'll receive on IPN a token. Save it for further payments.
 
-<!-- todo: the path to save token on IPN -->
+### Save the token for further payments
+
+The token can be saved from the [IPN response](#ipn-response) from path `decoded.order.mobilpay.token_id`.
 
 ## Create payment based on tokens or authorize a payment
 
