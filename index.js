@@ -47,13 +47,15 @@ function prepareParamsForNetopia(params) {
   return preparedParams;
 }
 
-function parseAndSetParams(netopiaResponse) {
+function parseAndSetParams (netopiaResponse) {
+  const params = {}
   if (netopiaResponse.order && netopiaResponse.order.params) {
     netopiaResponse.order.params.param.forEach((param) => {
-      // eslint-disable-next-line no-param-reassign
-      netopiaResponse.order.params[param.name] = param.value;
-    });
+      params[param.name] = param.value
+    })
   }
+
+  return params
 }
 
 /**
@@ -70,8 +72,7 @@ async function parseIPNResponse(responseXML) {
     crc: 'success',
   });
 
-  // add params to the response object
-  parseAndSetParams(decoded);
+  decoded.order.params = parseAndSetParams(decoded)
 
   return {
     decoded,
