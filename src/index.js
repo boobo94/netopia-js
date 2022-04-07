@@ -48,14 +48,14 @@ function prepareParamsForNetopia(params) {
 }
 
 function parseAndSetParams(netopiaResponse) {
-  const params = {}
+  const params = {};
   if (netopiaResponse.order && netopiaResponse.order.params) {
     netopiaResponse.order.params.param.forEach((param) => {
-      params[param.name] = param.value
-    })
+      params[param.name] = param.value;
+    });
   }
 
-  return params
+  return params;
 }
 
 /**
@@ -72,7 +72,7 @@ async function parseIPNResponse(responseXML) {
     crc: 'success',
   });
 
-  decoded.order.params = parseAndSetParams(decoded)
+  decoded.order.params = parseAndSetParams(decoded);
 
   return {
     decoded,
@@ -94,8 +94,8 @@ export function uid() {
  * This method creates a token that can be used for future payments.
  *
  * @param {String} amount
- * @param {Object} billing Billing information 
- *  (address, email, phone) required and 
+ * @param {Object} billing Billing information
+ *  (address, email, phone) required and
  *  type [person|company, default: person] is optional
  * @returns string
  */
@@ -142,8 +142,8 @@ async function createPayment(amount, billing, params = {}) {
         },
       },
       params: {
-        param: prepareParamsForNetopia(params)
-      }
+        param: prepareParamsForNetopia(params),
+      },
     },
   });
 
