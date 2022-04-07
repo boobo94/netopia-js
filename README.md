@@ -302,9 +302,15 @@ You can find a [simple payment example](https://github.com/mobilpay/Node.js) and
 ## Cards
 
 9900004810225098 - card accepted, CVV = 111
+
 9900541631437790 - card expired
+
 9900518572831942 - insufficinet funds
+
 9900827979991500 - CVV2/CCV incorect
+
 9900576270414197 - transaction declined 
+
 9900334791085173 - high risk card (for example is a stolen card) 
+
 9900130597497640 - error from the bank (connection with the bank cannot be established)
