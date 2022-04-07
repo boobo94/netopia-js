@@ -31,6 +31,8 @@ NETOPIA_ACCOUNT_PASSWORD=change_me
 NETOPIA_CURRENCY=RON
 ```
 
+To get the settings of account [login into Netopia](https://admin.mobilpay.ro/ro/login).
+
 # Usage
 
 ## Import
@@ -180,6 +182,8 @@ const response = await Netopia.capture(
 
 You can capture the pre-authorize value or a smaller amount and the difference will remain in the customer. Is not a refund, because the money didn't leave his account yet. You only capture partially. You cannot capture more than the pre-authorized value.
 
+Netopia has a limitation when you have pre-authorization active on you seller account and you need to do both payments with pre-authorizations and instant capture. The are unable to do it using a single customer account. I implemented this functionality using an workaround by doing authorize and capture. Use function `authorizeAndCapture(amount, token, billing, params)`.
+
 ## Cancel pre-authorized payment
 
 If you decide at any moment to cancel a payment, use:
@@ -209,3 +213,16 @@ The amount you refund can be different that the value you captured. For example 
 Install Wizdler browser extension and check https://secure.mobilpay.ro/api/payment2/?wsdl
 There you'll find all methods available.
 
+# Testing
+
+You can find a [simple payment example](https://github.com/mobilpay/Node.js) and [Netopia's Github](https://github.com/mobilpay/).
+
+## Cards
+
+9900004810225098 - card accepted, CVV = 111
+9900541631437790 - card expired
+9900518572831942 - insufficinet funds
+9900827979991500 - CVV2/CCV incorect
+9900576270414197 - transaction declined 
+9900334791085173 - high risk card (for example is a stolen card) 
+9900130597497640 - error from the bank (connection with the bank cannot be established)
