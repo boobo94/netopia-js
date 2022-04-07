@@ -125,7 +125,7 @@ async function createPayment(amount, billing, params = {}) {
             },
             // first_name: billing.firstName,
             // last_name: billing.lastName,
-            address: billing.address,
+            address: billing.address || '-',
             email: billing.email,
             mobile_phone: billing.phone,
           },
