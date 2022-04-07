@@ -47,12 +47,13 @@ import Netopia from '../../../modules/netopia'
 
 ```js
 import Netopia from '../../../modules/netopia'
+import { urlencoded } from 'express';
 
 // ...
 
 .post(
   '/api/v1/webhooks/netopia',
-  bodyParser.urlencoded({ extended: false }),
+  urlencoded({ extended: false }),
   async (req, res) => {
     const ipnResponse = await Netopia.parseIPNResponse(req.body)
 
