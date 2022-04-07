@@ -47,7 +47,7 @@ function prepareParamsForNetopia(params) {
   return preparedParams;
 }
 
-function parseAndSetParams (netopiaResponse) {
+function parseAndSetParams(netopiaResponse) {
   const params = {}
   if (netopiaResponse.order && netopiaResponse.order.params) {
     netopiaResponse.order.params.param.forEach((param) => {
@@ -94,9 +94,7 @@ export function uid() {
  * This method creates a token that can be used for future payments.
  *
  * @param {String} amount
- * @param {Object} billing Billing information
- *  (firstName, lastName, address, email, phone, description) required and
- *  (country, county, city, postalCode, type[person | company, default: person]) optional
+ * @param {Object} billing Billing information (address, email, phone) required and
  * @returns string
  */
 async function createPayment(amount, billing) {
@@ -117,28 +115,28 @@ async function createPayment(amount, billing) {
           currency: config.currency,
           amount,
         },
-        details: billing.description,
+        // details: billing.description,
         contact_info: {
           billing: {
             $: {
               type: billing.type || 'person',
             },
-            first_name: billing.firstName,
-            last_name: billing.lastName,
+            // first_name: billing.firstName,
+            // last_name: billing.lastName,
             address: billing.address,
             email: billing.email,
             mobile_phone: billing.phone,
           },
-          shipping: {
-            $: {
-              type: billing.type || 'person',
-            },
-            first_name: billing.firstName,
-            last_name: billing.lastName,
-            address: billing.address,
-            email: billing.email,
-            mobile_phone: billing.phone,
-          },
+          // shipping: {
+          //   $: {
+          //     type: billing.type || 'person',
+          //   },
+          //   first_name: billing.firstName,
+          //   last_name: billing.lastName,
+          //   address: billing.address,
+          //   email: billing.email,
+          //   mobile_phone: billing.phone,
+          // },
         },
       },
     },
@@ -197,13 +195,10 @@ async function login() {
  * If the pre-authorization is not set, the payment will be done immediately.
  * @param {Number} amount
  * @param {String} token
- * @param {Object} billing Billing information
- *  (firstName, lastName, address, email, phone, description) required and
- *  (country, county, city, postalCode) optional
  * @param {Object} params
  * @returns
  */
-async function createPaymentByToken(amount, token, billing, params = {}) {
+async function createPaymentByToken(amount, token, params = {}) {
   const orderId = uid();
   const xml = builder.buildObject({
     Envelope: {
@@ -258,21 +253,21 @@ async function createPaymentByToken(amount, token, billing, params = {}) {
 
             order: {
               id: orderId,
-              description: billing.description,
               amount,
               currency: config.currency,
 
-              billing: {
-                country: billing.country || 'Romania',
-                county: billing.county || 'Bucharest',
-                city: billing.city || 'Bucharest',
-                postal_code: billing.postalCode || '000000',
-                phone: billing.phone,
-                first_name: billing.firstName,
-                last_name: billing.lastName,
-                address: billing.address,
-                email: billing.email,
-              },
+              // description: billing.description,
+              // billing: {
+              //   country: billing.country || 'Romania',
+              //   county: billing.county || 'Bucharest',
+              //   city: billing.city || 'Bucharest',
+              //   postal_code: billing.postalCode || '000000',
+              //   phone: billing.phone,
+              //   first_name: billing.firstName,
+              //   last_name: billing.lastName,
+              //   address: billing.address,
+              //   email: billing.email,
+              // },
             },
             params: {
               item: prepareParamsForNetopia(params),
@@ -397,8 +392,8 @@ async function creditWithToken(orderId, amount = 0) {
  * @param {Object} params
  * @returns
  */
-async function authorizeAndCapture(amount, token, billing, params = {}) {
-  const authorizeResponse = await createPaymentByToken(amount, token, billing, params);
+async function authorizeAndCapture(amount, token, params = {}) {
+  const authorizeResponse = await createPaymentByToken(amount, token, params);
   const captureResponse = await captureWithToken(authorizeResponse.order.id, amount);
 
   return {
