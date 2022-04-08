@@ -403,6 +403,9 @@ async function creditWithToken(orderId, amount = 0) {
  */
 async function authorizeAndCapture(amount, token, params = {}) {
   const authorizeResponse = await createPaymentByToken(amount, token, params);
+  if (authorizeResponse.faultcode) {
+    throw new Error(authorizeResponse.faultstring);
+  }
   const captureResponse = await captureWithToken(authorizeResponse.order.id, amount);
 
   return {
