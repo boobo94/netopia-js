@@ -89,6 +89,10 @@ export function uid() {
   return Date.now().toString(36) + Math.random().toString(36).substring(2);
 }
 
+export const hashAccount = (orderId, amount, currency) => utils.hash(`${orderId}${amount}${currency}${config.sellerId}`);
+
+export const hashCustomerToken = (token) => utils.hash(token);
+
 /**
  * Create simple payment by card
  * This method creates a token that can be used for future payments.
@@ -247,7 +251,7 @@ async function createPaymentByToken(amount, token, params = {}) {
                * requeshHash=strtoupper(sha1(requestHashString));
                */
 
-              hash: utils.hash(orderId, amount, config.currency),
+              hash: hashAccount(orderId, amount, config.currency),
 
               confirm_url: config.confirmUrl,
             },
@@ -407,11 +411,59 @@ async function authorizeAndCapture(amount, token, params = {}) {
   };
 }
 
+/**
+ * Delete card by cancelling the token
+ * @param {String} token The token of the card
+ * @returns
+ */
+async function deleteCard(token) {
+  const xml = builder.buildObject({
+    Envelope: {
+      $: {
+        xmlns: 'http://schemas.xmlsoap.org/soap/envelope/',
+      },
+      Body: {
+        cancelToken: {
+          $: {
+            xmlns: `${config.baseUrl}/api/payment2/`,
+          },
+          request: {
+            $: {
+              xmlns: '',
+            },
+
+            token,
+
+            account: {
+              id: config.sellerId,
+              user_name: config.accountUsername,
+              hash: hashCustomerToken(token),
+              confirm_url: config.confirmUrl,
+            },
+
+          },
+        },
+      },
+    },
+  });
+
+  const { data } = await axios.post(`${config.baseUrl}/api/payment2/`, xml)
+    .catch((error) => error.response);
+
+  const parsedObject = await parseResponse(data);
+
+  if (parsedObject.Envelope.Body.Fault) {
+    return parsedObject.Envelope.Body.Fault;
+  }
+  return parsedObject.Envelope.Body.cancelTokenResponse.cancelTokenResult;
+}
+
 export default {
   parseResponse,
   parseIPNResponse,
   uid,
   authorizeAndCapture,
+  deleteCard,
   createSimplePayment: createPayment,
   registerCard: createPayment,
   authorize: createPaymentByToken,

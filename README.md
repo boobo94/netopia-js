@@ -297,6 +297,15 @@ const response = await Netopia.refund(
 
 The amount you refund can be different that the value you captured. For example if you captured 5 lei, you can refund only 2, maximum 5.
 
+## Delete card by removing the token
+
+To delete a card and make the token inactive for further payments do:
+
+```js
+const response = await Netopia.deleteCard(
+  "the token stored previously",
+)
+```
 
 ## How to check the SOAP documentation
 

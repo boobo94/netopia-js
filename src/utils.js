@@ -36,14 +36,12 @@ function decrypt(privateKey, envKey, data) {
   return decipher.update(data, 'base64', 'utf8') + decipher.final('utf8');
 }
 
-function hash(orderId, amount, currency) {
+function hash(text) {
   const md5 = crypto.createHash('md5').update(config.accountPassword).digest('hex').toString()
     .toUpperCase();
 
-  const text = `${md5}${orderId}${amount}${currency}${config.sellerId}`;
-
   return crypto.createHash('sha1')
-    .update(text)
+    .update(`${md5}${text}`)
     .digest('hex').toString()
     .toUpperCase();
 }
