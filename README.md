@@ -218,9 +218,11 @@ const response = await Netopia.createSimplePayment(
 );
 ```
 
-This method can be use to register a card, or use the alias `registerCard(amount, billing, params)`. Is the same function.
+This method can be used to register a card using the alias `registerCard(amount, billing, params)`. Is the same function. Create a symbolic transaction of 1 RON. If your seller account has an user which is activated for token usage, you'll receive on IPN a token. Save it for further payments. **Very important**, if your account is set with pre-authorization, when the IPN response confirm the card addition you should capture that transaction of 1 RON.
 
-If your seller account has an user which is activated for token usage, you'll receive on IPN a token. Save it for further payments.
+```js
+await Netopia.capture(ipnResponse.decoded.order.$.id,1)
+```
 
 ### Save the token for further payments
 
