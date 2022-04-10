@@ -100,7 +100,7 @@ import { urlencoded } from 'express';
           throw Error('action parameter is not supported')
       }
     } else {
-      console.error('error ipn', ipnResponse.order.mobilpay.error)
+      console.error('error ipn', ipnResponse.decoded.order.mobilpay.error)
     }
 
     return res.status(200).send(ipnResponse.response)
