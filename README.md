@@ -193,6 +193,29 @@ import { urlencoded } from 'express';
 }
 ```
 
+### Use IPN webhook from localhost
+
+In order to connect Netopia with your local API, you need to expose your server running locally to the internat. To do that you can simply use SSH tunneling. [Connect localhost to the internet](https://whyboobo.com/webservice/connect-localhost-to-the-internet/) is an article which describes how to do that.
+
+
+If you're hurry use localhost.run, [documentation here](https://localhost.run/docs/) by simply:
+
+```sh
+ssh -R 80:localhost:8000 nokey@localhost.run
+```
+
+Pay attention which port your server is running, in my example the server is running on port 8000. Just change with your port and hit the ENTER button to get something like this in the console:
+
+```sh
+de3a810e7aa2b9.lhrtunnel.link tunneled with tls termination, https://de3a810e7aa2b9.lhrtunnel.link
+```
+
+Just copy that base url and set the environment variable `NETOPIA_WEBHOOK_URL`, now it should looks like `NETOPIA_WEBHOOK_URL=https://de3a810e7aa2b9.lhrtunnel.link/api/v1/webhooks/netopia`.
+
+NOTE!!!
+
+Very important to know, after few minutes/hour the ssh tunnel url is changed, you need to copy paste the url again.
+
 ## How to create a simple payment or add the card in Netopia
 
 To create simple payments where the user insert the card. This method returns an html form that submits automatically, simulating the redirect to Netopia's payment page, where the customer has to fill the card details.
