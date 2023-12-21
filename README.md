@@ -139,7 +139,7 @@ import { urlencoded } from 'express';
             "first_name": "John",
             "last_name": "Doe",
             "address": "my street",
-            "email": "contact@cmevo.com",
+            "email": "foo@example.com",
             "mobile_phone": "071034782"
           },
           "shipping": {
@@ -149,7 +149,7 @@ import { urlencoded } from 'express';
             "first_name": "John",
             "last_name": "Doe",
             "address": "my street",
-            "email": "contact@cmevo.com",
+            "email": "foo@example.com",
             "mobile_phone": "071034782"
           }
         }
@@ -167,7 +167,7 @@ import { urlencoded } from 'express';
           "first_name": "John",
           "last_name": "Doe",
           "address": "my+street",
-          "email": "contact%40cmevo.com",
+          "email": "foo@example.com",
           "mobile_phone": "071034782"
         },
         "purchase": "1334168",
@@ -228,7 +228,7 @@ const response = await Netopia.createSimplePayment(
     firstName: 'John', // required
     lastName: 'Doe', // required
     address: "my street", // required
-    email: "contact@cmevo.com", // required
+    email: "foo@example.com", // required
     phone: "071034782", // required
     description: "the product or service description", // required
   },
@@ -265,7 +265,7 @@ const response = await Netopia.captureWithoutAuthorization(
     firstName: 'John', // required
     lastName: 'Doe', // required
     address: "my street", // required
-    email: "contact@cmevo.com", // required
+    email: "foo@example.com", // required
     phone: "071034782", // required
     description: "the product or service description", // required
     country: "Romania", // optional, default = 'Romania'
